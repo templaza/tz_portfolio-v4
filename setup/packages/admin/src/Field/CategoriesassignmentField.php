@@ -43,7 +43,8 @@ class CategoriesAssignmentField extends CheckboxesField
 
         $query -> select('c.title AS text, c.id AS value,c.template_id, c.level');
         $query -> from('#__tz_portfolio_plus_categories AS c');
-        $query -> where('extension = "com_tz_portfolio"');
+        $query -> where('(extension = '.$db -> quote('com_tz_portfolio')
+            .' OR extension='.$db -> quote('com_tz_portfolio_plus').')');
         $query -> order('c.lft');
 
         $db -> setQuery($query);
