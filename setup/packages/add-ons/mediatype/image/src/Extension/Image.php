@@ -102,9 +102,6 @@ class Image extends AddOn
                 $value  = $properties['params']['mt_image_watermark_fontpath'];
             }
 
-            var_dump($field);
-//            var_dump($form);
-            die(__FILE__);
             $value  = empty($value)?$field -> __get('value'):$value;
             $value  = empty($value)?$field -> getAttribute('default'):$value;
 

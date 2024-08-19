@@ -115,23 +115,31 @@ class TZ_PortfolioComponent extends MVCComponent implements
     public function registerStyle(){
 
         if(Factory::getApplication() -> getDocument()){
+            /* @var WebAssetManager $wa */
             $wa = Factory::getApplication() -> getDocument() -> getWebAssetManager();
 
             $params = ComponentHelper::getParams('com_tz_portfolio');
 
-            if($params -> get('enable_uikit', 1) && $params -> get('uikit_loading', 'cdn') == 'cdn') {
-                $waUIkitScript = $wa->getAsset('script', 'com_tz_portfolio.uikit');
-                if($cdn = $waUIkitScript -> getAttribute('cdn')){
-                    $wa -> registerScript('com_tz_portfolio.uikit', $cdn);
+            if($params -> get('enable_uikit', 1)
+                && $params -> get('uikit_loading', 'cdn') == 'cdn') {
+                if($wa -> assetExists('script', 'com_tz_portfolio.uikit')){
+                    $waUIkitScript = $wa->getAsset('script', 'com_tz_portfolio.uikit');
+                    if($cdn = $waUIkitScript -> getAttribute('cdn')){
+                        $wa -> registerScript('com_tz_portfolio.uikit', $cdn);
+                    }
                 }
-                $waUIkitIconScript = $wa->getAsset('script', 'com_tz_portfolio.uikiticon');
-                if($cdn = $waUIkitIconScript -> getAttribute('cdn')) {
-                    $wa -> registerScript('com_tz_portfolio.uikiticon', $cdn);
+                if($wa -> assetExists('script', 'com_tz_portfolio.uikiticon')){
+                    $waUIkitIconScript = $wa->getAsset('script', 'com_tz_portfolio.uikiticon');
+                    if($cdn = $waUIkitIconScript -> getAttribute('cdn')) {
+                        $wa -> registerScript('com_tz_portfolio.uikiticon', $cdn);
+                    }
                 }
 
-                $waUIkitStyle = $wa->getAsset('style', 'com_tz_portfolio.uikit');
-                if($cdn = $waUIkitStyle -> getAttribute('cdn')) {
-                    $wa->registerStyle('com_tz_portfolio.uikit', $cdn);
+                if($wa -> assetExists('style', 'com_tz_portfolio.uikit')){
+                    $waUIkitStyle = $wa->getAsset('style', 'com_tz_portfolio.uikit');
+                    if($cdn = $waUIkitStyle -> getAttribute('cdn')) {
+                        $wa->registerStyle('com_tz_portfolio.uikit', $cdn);
+                    }
                 }
             }
         }

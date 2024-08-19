@@ -701,13 +701,14 @@ class CategoryModel extends AdminModel
     public function publish(&$pks, $value = 1)
     {
         if (parent::publish($pks, $value)) {
-            $extension = Factory::getApplication()->getInput()->get('extension');
+            $extension = Factory::getApplication()->getInput()->get('extension', 'com_tz_portfolio');
 
             // Include the content plugins for the change of category state event.
             PluginHelper::importPlugin('content', null, true, $this->getDispatcher());
 
             // Trigger the onCategoryChangeState event.
-            $this->getDispatcher()->dispatch('onCategoryChangeState', new AfterCategoryChangeStateEvent('onCategoryChangeState', [
+            $this->getDispatcher()->dispatch('onCategoryChangeState',
+			new AfterCategoryChangeStateEvent('onCategoryChangeState', [
                 'context' => $extension,
                 'subject' => $pks,
                 'value'   => $value,

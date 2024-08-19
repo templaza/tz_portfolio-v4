@@ -58,9 +58,9 @@ $wa -> addInlineScript('(function($){
                 }
             },
             "installNow":{
-                "loadingHtml"   : "<span class=\\"loading\\"><span class=\\"fas fa- fa-sync-alt text-update fa-spin\\"></span> '
+                "loadingHtml"   : "<span class=\\"loading\\"><span class=\\"fas fa-sync-alt text-update fa-spin\\"></span> '
     .Text::_('COM_TZ_PORTFOLIO_INSTALLING').'</span>",
-                "installedHtml" : "<span class=\\"installed\\"><span class=\\"fas fa- fa-check\\"></span> '
+                "installedHtml" : "<span class=\\"installed\\"><span class=\\"fas fa-check\\"></span> '
     .Text::_('COM_TZ_PORTFOLIO_INSTALLED').'</span>"
             }
         });
@@ -70,32 +70,15 @@ $wa -> addInlineScript('(function($){
 $xml    = TZ_PortfolioHelper::getXMLManifest();
 ?>
 <div class="tpContainer tpp-container__bar">
-    <button type="button" data-toggle="collapse" data-target="#tp-addon__upload" data-bs-toggle="collapse" data-bs-target="#tp-addon__upload"
-            class="btn btn-success hasTooltip float-start tpp-container__button-upload" title="<?php echo Text::_('JTOOLBAR_UPLOAD');
-    ?>"><span class="icon-upload"></span> <?php echo Text::_('JTOOLBAR_UPLOAD'); ?></button>
+    <a href="<?php echo JRoute::_('index.php?option=com_installer');?>" target="_blank"
+       class="btn btn-success pull-left float-left float-start hasTooltip btn-extension__upload" title="<?php echo Text::_('JTOOLBAR_UPLOAD');
+    ?>"><span class="icon-upload"></span> <?php echo Text::_('JTOOLBAR_UPLOAD'); ?></a>
     <?php
     // Search tools bar
     echo LayoutHelper::render('joomla.searchtools.default', array('view' => $this));
     ?>
 </div>
 
-<div class="tpp-extension__upload-form collapse bg-white" id="tp-addon__upload">
-    <fieldset>
-        <legend class="h2"><?php echo Text::_('COM_TZ_PORTFOLIO_UPLOAD_AND_INSTALL_ADDON');?></legend>
-        <div class="form-horizontal">
-            <div class="control-group">
-                <div class="control-label"><?php echo $this -> form -> getLabel('install_package');?></div>
-                <div class="controls"><?php echo $this -> form -> getInput('install_package');?></div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button class="btn btn-primary btn-small" type="button" onclick="Joomla.submitbutton('addon.install')">
-                        <?php echo Text::_('COM_TZ_PORTFOLIO_UPLOAD_AND_INSTALL');?></button>
-                </div>
-            </div>
-        </div>
-    </fieldset>
-</div>
 <div class="tpp-extension__list">
     <div class="alert alert-warning alert-no-items" style="display: none;" data-tpp-error>
         <?php echo Text::sprintf('COM_TZ_PORTFOLIO_ERROR_LOADING_FROM_SERVER', $xml -> authorUrl, $xml->forumUrl); ?>

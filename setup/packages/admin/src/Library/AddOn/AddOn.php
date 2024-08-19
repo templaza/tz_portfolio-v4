@@ -66,17 +66,19 @@ class AddOn extends CMSPlugin implements
     {
         parent::__construct($subject,$config);
 
-        \JLoader::registerNamespace('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\'
-            .ucfirst($this -> _type).'\\'.ucfirst($this -> _name),
-            $this -> getAddOnPath('src'));
-
-        \JLoader::registerNamespace('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\'
-            .ucfirst($this -> _type).'\\'.ucfirst($this -> _name).'\\Site',
-            $this -> getAddOnPath('src'));
-        if($adminPath = $this -> getAddOnPath('admin/src')) {
+        if(!empty($this -> _type) && !empty($this -> _name)) {
             \JLoader::registerNamespace('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\'
-                . ucfirst($this->_type) . '\\' . ucfirst($this->_name) . '\\Administrator',
-                $adminPath);
+                . ucfirst($this->_type) . '\\' . ucfirst($this->_name),
+                $this->getAddOnPath('src'));
+
+            \JLoader::registerNamespace('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\'
+                .ucfirst($this -> _type).'\\'.ucfirst($this -> _name).'\\Site',
+                $this -> getAddOnPath('src'));
+            if($adminPath = $this -> getAddOnPath('admin/src')) {
+                \JLoader::registerNamespace('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\'
+                    . ucfirst($this->_type) . '\\' . ucfirst($this->_name) . '\\Administrator',
+                    $adminPath);
+            }
         }
     }
 

@@ -1,1 +1,0 @@
-<?php die("Access Denied"); ?>#x#O:8:"stdClass":4:{s:5:"title";s:16:"Developer Bundle";s:9:"reference";s:31:"MANUAL-657D67D2D46A5-1702717394";s:6:"expire";s:19:"2024-12-14 16:04:02";s:14:"support_expire";s:19:"2024-12-14 16:04:02";}

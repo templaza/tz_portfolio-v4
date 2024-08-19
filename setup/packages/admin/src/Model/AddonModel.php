@@ -77,7 +77,7 @@ class AddonModel extends AdminModel implements WorkflowModelInterface
         $this -> accept_types   = array(
             'tz_portfolio-plugin',
             'tz_portfolio-addon',
-            'tz_portfolio-template',
+            'tz_portfolio-style',
             'tz_portfolio_plus-plugin',
             'tz_portfolio_plus-addon',
             'tz_portfolio_plus-template');

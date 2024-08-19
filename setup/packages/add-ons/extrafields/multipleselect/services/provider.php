@@ -48,6 +48,8 @@ return new class () implements ServiceProviderInterface {
      */
     public function register(Container $container)
     {
+        JLoader::registerNamespace('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\Extrafields\\Dropdownlist'
+            ,COM_TZ_PORTFOLIO_ADDON_PATH.'/extrafields/dropdownlist/src');
         $container->registerServiceProvider(new MVCFactory('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\Extrafields\\Multipleselect'));
         $container->registerServiceProvider(new ComponentDispatcherFactory('\\TemPlaza\\Component\\TZ_Portfolio\\AddOn\\Extrafields\\Multipleselect'));
 

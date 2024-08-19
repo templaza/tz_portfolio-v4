@@ -46,10 +46,10 @@ $wa -> addInlineScript('(function($){
         var addonSteps  = [
         {
             /* Step 1: Upload */
-            element: $("[data-target=\\"#tp-addon__upload\\"]")[0],
+            element: $("[data-target=\\"#tp-extension__upload\\"]")[0],
             title: "' . $this->escape(Text::_('JTOOLBAR_UPLOAD')). '",
             intro: "' . $this->escape(Text::sprintf('COM_TZ_PORTFOLIO_INTRO_GUIDE_UPLOAD_MANUAL_DESC',
-                Text::_('COM_TZ_PORTFOLIO_ADDON'))) . '",
+                Text::_('COM_TZ_PORTFOLIO_EXTENSION'))) . '",
             position: "right"
         }];
                 
@@ -58,8 +58,8 @@ $wa -> addInlineScript('(function($){
                 /* Step 2: Install online */
                 element: $(".action-links .install-now")[0],
                 title: "' . $this->escape(Text::_('COM_TZ_PORTFOLIO_INTRO_GUIDE_INSTALL_UPDATE_ONLINE')). '",
-                intro: "' . $this->escape(Text::sprintf('COM_TZ_PORTFOLIO_INTRO_GUIDE_UPLOAD_MANUAL_DESC',
-            Text::_('COM_TZ_PORTFOLIO_ADDON'))) . '",
+                intro: "' . $this->escape(Text::sprintf('COM_TZ_PORTFOLIO_INTRO_GUIDE_INSTALL_UPDATE_ONLINE_DESC',
+            Text::_('COM_TZ_PORTFOLIO_EXTENSION'))) . '",
                 position: "top"
             });
         }
@@ -81,9 +81,9 @@ $wa -> addInlineScript('(function($){
 
 <?php echo HTMLHelper::_('tzbootstrap.addrow');?>
     <?php echo HTMLHelper::_('tzbootstrap.startcontainer', '10', false);?>
-    <form name="adminForm" method="post" id="adminForm" class="tpp-extension__upload"
+    <form name="adminForm" method="post" id="adminForm" class="tp-extension__upload"
           enctype="multipart/form-data"
-          action="index.php?option=com_tz_portfolio&view=addon&layout=upload">
+          action="index.php?option=com_tz_portfolio&view=extension&layout=upload">
 
         <?php echo $this -> loadTemplate('list'); ?>
 

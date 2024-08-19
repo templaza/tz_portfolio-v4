@@ -28,9 +28,9 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 
 if($itemsServer = $this -> itemsServer){
-    $loading    = '<span class="loading"><span class="tps tp-sync-alt text-update tp-spin"></span> '
+    $loading    = '<span class="loading"><span class="fas fa-sync-alt text-update tp-spin"></span> '
         .Text::_('COM_TZ_PORTFOLIO_INSTALLING').'</span>';
-    $installed  = '<span class="installed"><span class="tps tp-check"></span> '
+    $installed  = '<span class="installed"><span class="fas fa-check"></span> '
         .Text::_('COM_TZ_PORTFOLIO_INSTALLED').'</span>';
     ?>
     <?php
@@ -83,7 +83,7 @@ if($itemsServer = $this -> itemsServer){
                         ?>
                             <li>
                                 <a href="<?php echo $item -> pProduce -> pProduceUrl;
-                            ?>" class="install-now btn btn-outline-secondary"><span class="tps tp-download"></span> <?php
+                            ?>" class="install-now btn btn-outline-secondary"><span class="fas fa-download"></span> <?php
                                     echo Text::_('COM_TZ_PORTFOLIO_INSTALL_NOW'); ?></a>
                             </li>
                                 <?php
@@ -92,7 +92,7 @@ if($itemsServer = $this -> itemsServer){
                             ?>
                             <li>
                                 <a href="<?php echo $item -> pProduce ->  pProduceUrl;
-                            ?>" class="install-now btn btn-outline-secondary"><span class="tps tp-sync-alt text-update"></span> <?php
+                            ?>" class="install-now btn btn-outline-secondary"><span class="fas fa-sync-alt text-update"></span> <?php
                                 echo Text::_('COM_TZ_PORTFOLIO_UPDATE_NOW'); ?></a>
                             </li>
                                 <?php
@@ -101,7 +101,7 @@ if($itemsServer = $this -> itemsServer){
                             ?>
                             <li>
                                 <a href="<?php echo $item -> pProduce ->  pProduceUrl?$item -> pProduce ->  pProduceUrl:$item -> link;
-                            ?>" target="_blank" class="btn btn-outline-secondary"><span class="tps tp-shopping-cart"></span> <?php
+                            ?>" target="_blank" class="btn btn-outline-secondary"><span class="fas fa-shopping-cart"></span> <?php
                                 echo Text::_('COM_TZ_PORTFOLIO_BUY_NOW'); ?></a>
                             </li>
                                     <?php
@@ -115,7 +115,7 @@ if($itemsServer = $this -> itemsServer){
                             <?php if(isset($item -> liveDemoUrl) && $item -> liveDemoUrl){ ?>
                                 <li>
                                     <a target="_blank" class="btn btn-success js-tpp-live-demo" href="<?php
-                                echo $item -> liveDemoUrl; ?>"><i class="tpr tp-eye"></i> <?php
+                                echo $item -> liveDemoUrl; ?>"><i class="far fa-eye"></i> <?php
                                     echo Text::_('COM_TZ_PORTFOLIO_LIVE_DEMO');?></a>
                                 </li>
                             <?php } ?>
