@@ -97,9 +97,9 @@ class TZ_PortfolioSetupControllerAddons_InstallStyle extends TZ_PortfolioSetupCo
 	/* Set default style */
     protected function setDefaultStyle($style){
 
-        if($style != 'elegant'){
-            return false;
-        }
+        // if($style != 'elegant'){
+            // return false;
+        // }
 
         $db     = JFactory::getDbo();
         $query  = $db -> getQuery(true);
@@ -113,7 +113,7 @@ class TZ_PortfolioSetupControllerAddons_InstallStyle extends TZ_PortfolioSetupCo
             $query -> update('#__tz_portfolio_plus_templates');
             $query -> set('home = 1');
             $query -> where('template='.$db -> quote($style));
-            $query -> where('title='.$db -> quote('elegant - Default'));
+            $query -> where('title='.$db -> quote($style.' - Default'));
             $db -> setQuery($query);
             $db -> execute();
             return true;
