@@ -46,7 +46,7 @@ $wa -> addInlineScript('(function($){
         var addonSteps  = [
         {
             /* Step 1: Upload */
-            element: $("[data-target=\\"#tp-extension__upload\\"]")[0],
+            element: $(".btn-extension__upload")[0],
             title: "' . $this->escape(Text::_('JTOOLBAR_UPLOAD')). '",
             intro: "' . $this->escape(Text::sprintf('COM_TZ_PORTFOLIO_INTRO_GUIDE_UPLOAD_MANUAL_DESC',
                 Text::_('COM_TZ_PORTFOLIO_EXTENSION'))) . '",

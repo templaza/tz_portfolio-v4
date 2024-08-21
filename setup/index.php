@@ -28,6 +28,8 @@ use Joomla\CMS\Factory;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Component\ComponentHelper;
 
 /* Require defines */
 require_once (dirname(__FILE__).'/includes/defines.php');
@@ -86,10 +88,59 @@ if($task){
 $contents = file_get_contents(COM_TZ_PORTFOLIO_SETUP_CONFIG . '/install.json');
 $steps = json_decode($contents);
 
+if(ComponentHelper::isInstalled('com_tz_portfolio_plus')
+    || PluginHelper::getPlugin('system','tz_portfolio_plus')){
+//    array_shift($steps);
+//    $lastStep   = array_pop($steps);
+//    $lastStep -> index++;
+    $lastStep   = end($steps);
+    array_push($steps,
+        (object)[
+            "index"     => $lastStep -> index + 1,
+            "title"     => "COM_TZ_PORTFOLIO_INSTALLATION_DISABLE_TZ_PORTFOLIO_PLUS",
+            "desc"      => "COM_TZ_PORTFOLIO_INSTALLATION_DISABLE_TZ_PORTFOLIO_PLUS_DESC",
+            "template"  => "disable",
+        ]);
+}
+
 // Workflow
 $active = $input->get('active', 0, 'default');
 
 if ($active === 'complete') {
+    if($input -> get('disable_tz_portfolio_plus') && (ComponentHelper::isInstalled('com_tz_portfolio_plus')
+            || PluginHelper::getPlugin('system','tz_portfolio_plus'))){
+
+        $db     = Factory::getDbo();
+
+        // Disable TZ Portfolio Plus component
+        if(ComponentHelper::isInstalled('com_tz_portfolio_plus')){
+            $query  = $db -> getQuery(true);
+
+            $query -> update('#__extensions');
+            $query -> set('enabled = 0');
+            $query -> where('type='.$db -> quote('component'));
+            $query -> where('element='.$db -> quote('com_tz_portfolio_plus'));
+
+            $db -> setQuery($query);
+            $db -> execute();
+        }
+
+        // Disable System TZ Portfolio Plus plugin
+        if(PluginHelper::getPlugin('system','tz_portfolio_plus')){
+
+            $query  = $db -> getQuery(true);
+
+            $query -> update('#__extensions');
+            $query -> set('enabled = 0');
+            $query -> where('type='.$db -> quote('plugin'));
+            $query -> where('folder='.$db -> quote('system'));
+            $query -> where('element='.$db -> quote('tz_portfolio_plus'));
+
+            $db -> setQuery($query);
+            $db -> execute();
+        }
+    }
+
     $activeStep = new stdClass();
 
     $activeStep->title = Text::_('COM_TZ_PORTFOLIO_INSTALLER_INSTALLATION_COMPLETED');
