@@ -139,6 +139,12 @@
       "uri": "com_tz_portfolio/jquery.fancybox.min.css"
     },
     {
+      "name": "com_tz_portfolio.dm-uploader",
+      "type": "style",
+      "version": "1.0.1",
+      "uri": "com_tz_portfolio/jquery.dm-uploader.min.css"
+    },
+    {
       "name": "com_tz_portfolio.uikit",
       "type": "script",
       "version": "3.21.4",
@@ -180,6 +186,12 @@
       "type": "script",
       "version": "3.5.7",
       "uri": "com_tz_portfolio/jquery.fancybox.min.js"
+    },
+    {
+      "name": "com_tz_portfolio.dm-uploader",
+      "type": "script",
+      "version": "1.0.1",
+      "uri": "com_tz_portfolio/jquery.dm-uploader.min.js"
     }
   ]
 }

@@ -99,6 +99,21 @@ class AddOn extends CMSPlugin implements
 
     public function onAddOnDisplayManager($task = null){
 
+        $app    = $this -> getApplication();
+        $input  = $app -> input;
+
+        $addon_task   = $input -> get('addon_task');
+        $mvc    = $this -> getMVCFactory();
+        $config['factory'] = $mvc;
+
+        $controller = $this -> getMVCFactory() -> createController($this -> _name, 'administrator', $config,
+            $app, $input);
+        if(!$controller){
+            return '';
+        }
+
+        list($view, $task)  = explode('.', $addon_task);
+
 //        tzportfolioplusimport('html.sidebar');
 //        tzportfolioplusimport('controller.legacy');
 
@@ -114,6 +129,8 @@ class AddOn extends CMSPlugin implements
 //        JLoader::import('com_tz_portfolio.models.addon_datas',$component_path);
 
         ob_start();
+        $controller -> execute($task);
+        $controller -> redirect();
         $html   = ob_get_contents();
         ob_end_clean();
 
@@ -693,6 +710,7 @@ class AddOn extends CMSPlugin implements
     public function onContentAfterSave($context, $data, $isnew){
         if($context == 'com_tz_portfolio.article' || $context == 'com_tz_portfolio.form') {
             if($model  = $this -> getModel()) {
+                die(__FILE__);
                 if(method_exists($model,'save')) {
                     $model->save($data);
                 }
