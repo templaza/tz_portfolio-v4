@@ -403,7 +403,7 @@ class TZ_PortfolioHelper  extends ContentHelper{
         $storeId    = md5($storeId);
 
         if(isset(static::$cache[$storeId])){
-            return $storeId;
+            return static::$cache[$storeId];
         }
 
         if($connected = static::checkConnectServer($url, $method)){
