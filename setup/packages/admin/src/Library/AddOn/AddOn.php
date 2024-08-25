@@ -710,7 +710,6 @@ class AddOn extends CMSPlugin implements
     public function onContentAfterSave($context, $data, $isnew){
         if($context == 'com_tz_portfolio.article' || $context == 'com_tz_portfolio.form') {
             if($model  = $this -> getModel()) {
-                die(__FILE__);
                 if(method_exists($model,'save')) {
                     $model->save($data);
                 }
