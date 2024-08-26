@@ -1,13 +1,13 @@
 <?php
 /*------------------------------------------------------------------------
 
-# TZ Portfolio Plus Extension
+# TZ Portfolio Extension
 
 # ------------------------------------------------------------------------
 
 # Author:    DuongTVTemPlaza
 
-# Copyright: Copyright (C) 2011-2019 TZ Portfolio.com. All Rights Reserved.
+# Copyright: Copyright (C) 2011-2024 TZ Portfolio.com. All Rights Reserved.
 
 # @License - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 
@@ -36,9 +36,10 @@ class com_tz_portfolioInstallerScript{
     protected $install_new  = false;
 
     public function postflight($type, $parent){
-        // Display information when installed
-        $this -> installationResult();
-
+        if($type != 'uninstall') {
+            // Display information when installed
+            $this->installationResult();
+        }
     }
 
     public function uninstall($parent){
@@ -67,7 +68,8 @@ class com_tz_portfolioInstallerScript{
                 $mname = (string)$module->attributes() -> module;
                 $client = (string)$module->attributes() -> client;
 
-                $query = "SELECT `extension_id` FROM #__extensions WHERE `type`='module' AND `element` = ".$db->Quote($mname)."";
+                $query = "SELECT `extension_id` FROM #__extensions WHERE `type`='module' AND `element` = "
+                    .$db->quote($mname);
                 $db->setQuery($query);
                 $IDs = $db->loadColumn();
                 if (count($IDs)) {
@@ -75,8 +77,8 @@ class com_tz_portfolioInstallerScript{
                         $installer = new Installer;
                         $result = $installer->uninstall('module', $id);
                     }
+                    $status->modules[] = array ('name'=>$mname, 'client'=>$client, 'result'=>$result);
                 }
-                $status->modules[] = array ('name'=>$mname, 'client'=>$client, 'result'=>$result);
             }
         }
 
@@ -95,16 +97,10 @@ class com_tz_portfolioInstallerScript{
                         $installer = new Installer;
                         $result = $installer->uninstall('plugin', $id);
                     }
+                    $status->plugins[] = array ('name'=>$pname, 'group'=>$pgroup, 'result'=>$result);
                 }
-                $status->plugins[] = array ('name'=>$pname, 'group'=>$pgroup, 'result'=>$result);
             }
         }
-
-//        $query = $db -> getQuery(true);
-//        $query -> delete('#__assets');
-//        $query -> where('name LIKE '.$db -> quote('com_tz_portfolio').'%');
-//        $db -> setQuery($query);
-//        $db -> execute();
 
         $this -> uninstallationResult($status);
     }
