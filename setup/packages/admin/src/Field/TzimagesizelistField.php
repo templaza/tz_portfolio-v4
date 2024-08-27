@@ -49,9 +49,9 @@ class TzimagesizelistField extends ListField
     protected function getOptions(){
         $element        = $this -> element;
         $options        = array();
-        $_plugin        = $element['addon']?$element['addon']:null;
-        $_plugin_group  = $element['addon_group']?$element['addon_group']:'mediatype';
-        $param_filter   = $element['param_name']?$element['param_name']:null;
+        $_plugin        = $element['addon']?(string)$element['addon']:null;
+        $_plugin_group  = $element['addon_group']?(string)$element['addon_group']:'mediatype';
+        $param_filter   = $element['param_name']?(string)$element['param_name']:null;
         if($_plugin && $param_filter) {
             if ($plugin = AddonHelper::getPlugin($_plugin_group, $_plugin, false)) {
                 if(!empty($plugin -> params)) {
