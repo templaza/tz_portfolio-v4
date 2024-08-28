@@ -50,6 +50,7 @@ $wa -> addInlineScript('(function($){
     "use strict";
     $(document).ready(function(){
         $("#adminForm").tppServerList({
+            "view"      : "'.$this -> getName().'",
             "iframeHtml": "' . str_replace('"', '\\"',trim($iframeHtml)) . '",
             "formToken" : "'.Session::getFormToken().'",
             "ajax"              : {
